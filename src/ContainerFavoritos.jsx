@@ -3,14 +3,14 @@ function ContainerFavoritos(props) {
     return (
         <div>
             <div className="container-favoritos">
-                <h1>Favoritos</h1>
+                <h2>Ouvir Novamente</h2>
                 <div className="container-acdc">
-                    <button><img src={props.imagemCapa} alt={props.textoAlternativo} /></button>
+                    <button onClick={props.tocarAlbum}><img src={props.imagemCapa} alt={props.textoAlternativo} /></button>
                     <div className="texto-acdc">
-                        <h3>ACDC</h3>
+                        <h3>AC/DC</h3>
                         <h4>Pedro Henrique</h4>
-                        <p><span>•</span>  301 itens</p>
-                    </div>
+                        <p><span>•</span> {props.NumMusicas} itens</p>
+                </div>
                     
                     
                 </div>
@@ -20,7 +20,6 @@ function ContainerFavoritos(props) {
 
 
 
-   /*  */
 }
 
 export default ContainerFavoritos;
