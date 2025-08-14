@@ -4,25 +4,56 @@ import BarraControles from './BarraControles';
 import ContainerFavoritos from './ContainerFavoritos';
 import GerenciadorAlbum from './GerenciadorAlbum';
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import acdc from "./assets/ACDC.png"
 import MusicasACDC from "./assets/musicas/album1/MusicasACDC"
+import MusicaOasis from './assets/musicas/album2/MusicaOasis';
+import ImagemCapa from './ImagemCapa'
 
 function App() {
 
   const [taTocando, definirTaTocando] = useState(false);
+  const [playList, definirPlaylist] = useState(MusicasACDC);
   const [albumAtual, definirAlbum] = useState(0);
+  const [listaMusica, definirListaMusica] = useState(0);
   const refMusica = useRef(null);
 
-  const InformacaoAlbum = {
-    nomeAlbum: "ACDC",
-    album: MusicasACDC,
-    autor: "Pedro",
-    capa: acdc,
-    textoAlternativo: "ACDC",
+  const InformacaoAlbum ={
+    album: playList,
+  }
+  
+  const trocarAlbum = (novoAlbum) => {
+    definirPlaylist(novoAlbum);
+    definirListaMusica(0);
+    if (refMusica.current) {
+      refMusica.current.src= novoAlbum[0];
+      refMusica.current.play();
+      definirTaTocando(true);
+    }
   }
 
-  const NumMusicas = MusicasACDC.length;
+  const nextMusicaDoAlbum = () => {
+    
+   let proximo = listaMusica + 1;
 
+  if (proximo >= playList.length) {
+    proximo = 0; // volta pro início
+  }
+
+  definirListaMusica(proximo);
+  refMusica.current.src = playList[proximo];
+  refMusica.current.play();
+    
+  }
+  useEffect(() => {
+  const el = refMusica.current;
+  if (!el) return;
+  if (!playList.length) return;
+
+  if (taTocando) {
+    el.currentTime = 0;
+    el.play().catch(() => {});
+  }
+}, [listaMusica, playList, taTocando]);
+    
   const tocarAlbum = () => {
     refMusica.current.play();
     definirTaTocando(true);
@@ -42,9 +73,12 @@ function App() {
   }
   
   return <>
-    <ContainerFavoritos tocarAlbum={tocarAlbum} imagemCapa={InformacaoAlbum.capa} textoAlternativo={InformacaoAlbum.textoAlternativo} NumMusicas={NumMusicas}/>
+    <ContainerFavoritos tocarAlbum={() => refMusica.current.play()}
+      ImagemCapa={ImagemCapa} trocarAlbum={trocarAlbum}
+      InformacaoAlbum={InformacaoAlbum} nextMusicaDoAlbum={nextMusicaDoAlbum}
+     />
     <BarraControles taTocando={taTocando} tocarOuPausar={tocarOuPausar} />
-    <GerenciadorAlbum musicaAlbum={InformacaoAlbum.album[albumAtual]} referencia={refMusica}/>
+    <GerenciadorAlbum musicaAlbum={playList[listaMusica]} referencia={refMusica} onEnded={nextMusicaDoAlbum}/>
   </>
 
 }
