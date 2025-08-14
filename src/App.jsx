@@ -44,13 +44,13 @@ function App() {
     
   }
   useEffect(() => {
-  const el = refMusica.current;
-  if (!el) return;
+  const rf = refMusica.current;
+  if (!rf) return;
   if (!playList.length) return;
 
   if (taTocando) {
-    el.currentTime = 0;
-    el.play().catch(() => {});
+    rf.currentTime = 0;
+    rf.play().catch(() => {});
   }
 }, [listaMusica, playList, taTocando]);
     
