@@ -35,7 +35,7 @@ function App() {
    let proximo = listaMusica + 1;
 
   if (proximo >= playList.length) {
-    proximo = 0; // volta pro início
+    proximo = 0;
   }
 
   definirListaMusica(proximo);
