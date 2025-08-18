@@ -1,84 +1,100 @@
 import './App.css'
 import { useState, useRef, useEffect} from 'react';
-import BarraControles from './BarraControles';
-import ContainerFavoritos from './ContainerFavoritos';
-import GerenciadorAlbum from './GerenciadorAlbum';
+import ControlsBar  from './ControlsBar';
+import FavoritesContainer from './FavoritesContainer';
+import AlbumManager from './AlbumManager';
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import MusicasACDC from "./assets/musicas/album1/MusicasACDC"
-import MusicaOasis from './assets/musicas/album2/MusicaOasis';
-import ImagemCapa from './ImagemCapa'
+import MusicACDC from "./assets/musicas/album1/MusicACDC"
+import CoverImage from './CoverImage'
+import ProfilePhoto from "./assets/ProfilePhoto.jpg" 
 
 function App() {
 
-  const [taTocando, definirTaTocando] = useState(false);
-  const [playList, definirPlaylist] = useState(MusicasACDC);
-  const [albumAtual, definirAlbum] = useState(0);
-  const [listaMusica, definirListaMusica] = useState(0);
-  const refMusica = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [playList, setPlaylist] = useState(MusicACDC);
+  const [trackIndex, setTrackIndex] = useState(0);
+  const audioRef  = useRef(null);
 
-  const InformacaoAlbum ={
+  const albumInfo  ={
     album: playList,
+    totalMusic: playList.length,
   }
   
-  const trocarAlbum = (novoAlbum) => {
-    definirPlaylist(novoAlbum);
-    definirListaMusica(0);
-    if (refMusica.current) {
-      refMusica.current.src= novoAlbum[0];
-      refMusica.current.play();
-      definirTaTocando(true);
+  const switchAlbum = (newAlbum) => {
+    setPlaylist(newAlbum);
+    setTrackIndex(0);
+    if (audioRef .current) {
+      audioRef .current.src= newAlbum[0];
+      audioRef .current.play();
+      setIsPlaying(true);
     }
   }
 
-  const nextMusicaDoAlbum = () => {
+  const nextTrack = () => {
     
-   let proximo = listaMusica + 1;
+   let next = trackIndex + 1;
 
-  if (proximo >= playList.length) {
-    proximo = 0;
+  if (next >= playList.length) {
+    next = 0;
   }
 
-  definirListaMusica(proximo);
-  refMusica.current.src = playList[proximo];
-  refMusica.current.play();
+  setTrackIndex(next);
+  audioRef .current.src = playList[next];
+  audioRef .current.play();
     
   }
   useEffect(() => {
-  const rf = refMusica.current;
-  if (!rf) return;
+  const af = audioRef .current;
+  if (!af) return;
   if (!playList.length) return;
 
-  if (taTocando) {
-    rf.currentTime = 0;
-    rf.play().catch(() => {});
+  if (isPlaying) {
+    af.currentTime = 0;
+    af.play().catch(() => {});
   }
-}, [listaMusica, playList, taTocando]);
+}, [trackIndex, playList, isPlaying]);
     
-  const tocarAlbum = () => {
-    refMusica.current.play();
-    definirTaTocando(true);
+  const playAlbum  = () => {
+    audioRef .current.play();
+    setIsPlaying(true);
   };
 
   const pauseAlbum = () => {
-    refMusica.current.pause();
-    definirTaTocando(false);
+    audioRef .current.pause();
+    setIsPlaying(false);
   };
 
-  const tocarOuPausar = () => {
-    if(taTocando) {
+  const togglePlay = () => {
+    if(isPlaying) {
       pauseAlbum();
     } else {
-      tocarAlbum();
+      playAlbum();
     }
   }
-  
+
+  const nextMusic = () => {
+    if(trackIndex === albumInfo.totalMusic - 1) {
+      setTrackIndex(0)
+    } else {
+      setTrackIndex(trackIndex + 1)
+    }
+  }
+
+  const backMusic = () => {
+    if(trackIndex === 0) {
+      setTrackIndex(albumInfo.totalMusic - 1)
+    } else {
+      setTrackIndex(trackIndex - 1)
+    }
+  }
+
   return <>
-    <ContainerFavoritos tocarAlbum={() => refMusica.current.play()}
-      ImagemCapa={ImagemCapa} trocarAlbum={trocarAlbum}
-      InformacaoAlbum={InformacaoAlbum} nextMusicaDoAlbum={nextMusicaDoAlbum}
+    <FavoritesContainer 
+      CoverImage={CoverImage} switchAlbum ={switchAlbum}
+      albumInfo={albumInfo} ProfilePhoto={ProfilePhoto}
      />
-    <BarraControles taTocando={taTocando} tocarOuPausar={tocarOuPausar} />
-    <GerenciadorAlbum musicaAlbum={playList[listaMusica]} referencia={refMusica} onEnded={nextMusicaDoAlbum}/>
+    <ControlsBar isPlaying={isPlaying} togglePlay={togglePlay} nextMusic={nextMusic} backMusic={backMusic}/>
+    <AlbumManager musicAlbum={playList[trackIndex]} reference={audioRef } onEnded={nextTrack}/>
   </>
 
 }

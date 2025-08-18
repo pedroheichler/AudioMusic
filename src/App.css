@@ -41,18 +41,41 @@
   font-size: 2rem;
 }
 
-.container-favoritos {
+.container-favorites {
   width: 100%;
-  height: 900px;
-  margin: 60px;
+  height: 500px;
 }
 
-.container-acdc button {
+.container-head-favorite {
+  display: flex;       
+  flex-direction: row; 
+  justify-content: center; 
+  align-items: center;
+  gap: 20px;
+  margin-left: -50px;
+}
+
+.container-ProfilePhoto {
+  width: 48px;
+  height: 48px;
+  border-radius: 30px;
+}
+
+.container-favorites-album {
+  display: flex;       
+  flex-direction: row; 
+  justify-content: center; 
+  align-items: center;
+  gap: 30px;
+  margin-left: 70px;
+}
+
+.container-favorites-album button {
   all: unset;
   cursor: pointer;
 }
 
-.container-acdc button img {
+.container-favorites-album button img {
   width: 180px;
   height: 180px;
 }
