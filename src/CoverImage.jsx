@@ -1,6 +1,7 @@
-import coverAcDc from './assets/musicas/album1/ACDC.png'
-import coverOasis from './assets/musicas/album2/front.jpg'
+import coverAcDc from './assets/musicas/album1/capa.jpg'
+import coverOasis from './assets/musicas/album2/capa.jpg'
+import coverFavorito from './assets/musicas/albumFavorito/coverFavorito.jpg'
 
-const CoverImage = [coverAcDc, coverOasis];
+const CoverImage = [coverAcDc, coverOasis, coverFavorito];
 
 export default CoverImage;

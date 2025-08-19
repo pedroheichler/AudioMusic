@@ -6,7 +6,7 @@ import AlbumManager from './AlbumManager';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import MusicACDC from "./assets/musicas/album1/MusicACDC"
 import CoverImage from './CoverImage'
-import ProfilePhoto from "./assets/ProfilePhoto.jpg" 
+import ProfilePhoto from "./assets/ProfilePhoto.jpg";
 
 function App() {
 
