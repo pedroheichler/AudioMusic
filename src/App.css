@@ -1,4 +1,10 @@
-
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  background-color: black;
+  color: white;
+}
 
 .container-Barra {
   position: fixed;
@@ -104,13 +110,14 @@
 }
 
 .container-favorites-album button img {
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
 }
 
 .texto-acdc h3{
   margin: 0px;
   margin-top: 2px;
+  color: white;
 }
 .texto-acdc h4{
   color: #858585;
@@ -121,4 +128,23 @@
   color: #858585;
   margin: 0px;
   margin-top: 2px;
+}
+
+.ChannelFavorite {
+  border-radius: 100px;
+}
+
+.ChannelFavorite-texto {
+  text-align: center;
+  margin: 0px;
+  padding: 0;
+}
+
+.ChannelFavorite-texto {
+  color: white;
+}
+
+.ChannelFavorite-texto p {
+  margin-top: -20px;
+  color: #858585;
 }
