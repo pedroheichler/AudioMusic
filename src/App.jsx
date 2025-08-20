@@ -7,6 +7,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import MusicACDC from "./assets/musicas/album1/MusicACDC"
 import CoverImage from './CoverImage'
 import ProfilePhoto from "./assets/ProfilePhoto.jpg";
+import ContainerProgress from './ContainerProgress';
 
 function App() {
 
@@ -95,6 +96,8 @@ function App() {
       CoverImage={CoverImage} switchAlbum ={switchAlbum}
       albumInfo={albumInfo} ProfilePhoto={ProfilePhoto}
      />
+
+    <ContainerProgress/>
     <ControlsBar timeTotalMusic={timeTotalMusic} timeCurrentMusic={timeCurrentMusic} isPlaying={isPlaying} togglePlay={togglePlay} nextMusic={nextMusic} backMusic={backMusic}/>
     <AlbumManager timeCurrentMusic={timeCurrentMusic} setTimeTotalMusic={setTimeTotalMusic}
      setTimeCurrentMusic={setTimeCurrentMusic} musicAlbum={playList[trackIndex]} reference={audioRef } onEnded={nextTrack}/>

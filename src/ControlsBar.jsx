@@ -14,7 +14,7 @@ function ControlsBar ({togglePlay, isPlaying, nextMusic, backMusic, timeCurrentM
                 <button onClick={nextMusic}><i className="bi bi-skip-end"></i></button>
             </div>
             <div>
-                <p>{formatTime(timeCurrentMusic)}/{formatTime(timeTotalMusic)}</p>
+                <p className="container-barra-time">{formatTime(timeCurrentMusic)} / {formatTime(timeTotalMusic)}</p>
             </div>
         </div>
     )
