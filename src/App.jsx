@@ -13,6 +13,8 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [playList, setPlaylist] = useState(MusicACDC);
   const [trackIndex, setTrackIndex] = useState(0);
+  const [timeCurrentMusic, setTimeCurrentMusic] = useState(0);
+  const [timeTotalMusic, setTimeTotalMusic] = useState(0);
   const audioRef  = useRef(null);
 
   const albumInfo  ={
@@ -93,8 +95,9 @@ function App() {
       CoverImage={CoverImage} switchAlbum ={switchAlbum}
       albumInfo={albumInfo} ProfilePhoto={ProfilePhoto}
      />
-    <ControlsBar isPlaying={isPlaying} togglePlay={togglePlay} nextMusic={nextMusic} backMusic={backMusic}/>
-    <AlbumManager musicAlbum={playList[trackIndex]} reference={audioRef } onEnded={nextTrack}/>
+    <ControlsBar timeTotalMusic={timeTotalMusic} timeCurrentMusic={timeCurrentMusic} isPlaying={isPlaying} togglePlay={togglePlay} nextMusic={nextMusic} backMusic={backMusic}/>
+    <AlbumManager timeCurrentMusic={timeCurrentMusic} setTimeTotalMusic={setTimeTotalMusic}
+     setTimeCurrentMusic={setTimeCurrentMusic} musicAlbum={playList[trackIndex]} reference={audioRef } onEnded={nextTrack}/>
   </>
 
 }

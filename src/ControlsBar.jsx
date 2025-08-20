@@ -1,4 +1,10 @@
-function ControlsBar ({togglePlay, isPlaying, nextMusic, backMusic}) {
+function ControlsBar ({togglePlay, isPlaying, nextMusic, backMusic, timeCurrentMusic, timeTotalMusic}) {
+    const formatTime = (timeInSeconds) => {
+        const time = new Date(null);
+        time.setSeconds(timeInSeconds);
+        return time.toISOString().slice(14, 19);
+    };
+    
     return(
         <div className="container-Barra">
             <div className="container-botoes">
@@ -6,6 +12,9 @@ function ControlsBar ({togglePlay, isPlaying, nextMusic, backMusic}) {
                 <button onClick={togglePlay}> <i className={`bi bi-${ isPlaying ? "pause" : "play"
             }-circle-fill`}></i> </button>
                 <button onClick={nextMusic}><i className="bi bi-skip-end"></i></button>
+            </div>
+            <div>
+                <p>{formatTime(timeCurrentMusic)}/{formatTime(timeTotalMusic)}</p>
             </div>
         </div>
     )
