@@ -17,6 +17,7 @@ function App() {
   const [timeCurrentMusic, setTimeCurrentMusic] = useState(0);
   const [timeTotalMusic, setTimeTotalMusic] = useState(0);
   const audioRef  = useRef(null);
+  const progressBar = useRef(null);
 
   const albumInfo  ={
     album: playList,
@@ -91,13 +92,20 @@ function App() {
     }
   }
 
+  const moveForward = (event) => {
+    const width = progressBar.current.clientWidth;
+    const newTime = (event.nativeEvent.offsetX/width) * timeTotalMusic;
+    audioRef.current.currentTime = newTime;
+  };
+
   return <>
     <FavoritesContainer 
       CoverImage={CoverImage} switchAlbum ={switchAlbum}
       albumInfo={albumInfo} ProfilePhoto={ProfilePhoto}
      />
 
-    <ContainerProgress/>
+    <ContainerProgress moveForward={moveForward} reference={progressBar} 
+    timeTotalMusic={timeTotalMusic} timeCurrentMusic={timeCurrentMusic} />
     <ControlsBar timeTotalMusic={timeTotalMusic} timeCurrentMusic={timeCurrentMusic} isPlaying={isPlaying} togglePlay={togglePlay} nextMusic={nextMusic} backMusic={backMusic}/>
     <AlbumManager timeCurrentMusic={timeCurrentMusic} setTimeTotalMusic={setTimeTotalMusic}
      setTimeCurrentMusic={setTimeCurrentMusic} musicAlbum={playList[trackIndex]} reference={audioRef } onEnded={nextTrack}/>

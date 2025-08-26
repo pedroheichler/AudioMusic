@@ -63,7 +63,7 @@ body {
     rgba(0, 0, 0, 0.95) 60%,
     rgb(0, 0, 0) 100%
     ),
-    url("./assets/background-yt.jpg");
+    url("./assets/background-yt3.jpg");
 
   background-size: cover;      
   background-position: top;   
@@ -157,6 +157,8 @@ body {
 
 .container-progresso {
   width: 100%;
+  height: 10px;
+  left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -168,7 +170,7 @@ body {
   bottom: 72px;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 3px;
   background-color: #909090;
   display: flex;
   align-items: center;
@@ -179,12 +181,10 @@ body {
 .progress-current {
   position: fixed;
   bottom: 72px;
-  width: 46%;
   left: 0px;
-  height: 2px;
+  height: 3px;
   background-color: red;
   display: flex;
   align-items: center;
-  padding: 0 20px;
   box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
 }

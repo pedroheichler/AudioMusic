@@ -1,9 +1,11 @@
-function ContainerProgress() {
+function ContainerProgress({moveForward, reference, timeTotalMusic, timeCurrentMusic}) {
 
     return (
-        <section className="container-progresso">
-        <div className="progress-total">
-            <div className="progress-current">
+        <section onClick={moveForward} className="container-progresso">
+        <div className="progress-total" ref={reference} onClick={moveForward}>
+            <div className="progress-current" style={{
+                    width: `${timeCurrentMusic*100/timeTotalMusic}%`
+                }}>
             </div>
         </div>
         </section>
