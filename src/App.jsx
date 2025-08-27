@@ -106,7 +106,8 @@ function App() {
 
     <ContainerProgress moveForward={moveForward} reference={progressBar} 
     timeTotalMusic={timeTotalMusic} timeCurrentMusic={timeCurrentMusic} />
-    <ControlsBar timeTotalMusic={timeTotalMusic} timeCurrentMusic={timeCurrentMusic} isPlaying={isPlaying} togglePlay={togglePlay} nextMusic={nextMusic} backMusic={backMusic}/>
+    <ControlsBar timeTotalMusic={timeTotalMusic} timeCurrentMusic={timeCurrentMusic} isPlaying={isPlaying}
+    togglePlay={togglePlay} nextMusic={nextMusic} backMusic={backMusic} CoverImage={CoverImage} />
     <AlbumManager timeCurrentMusic={timeCurrentMusic} setTimeTotalMusic={setTimeTotalMusic}
      setTimeCurrentMusic={setTimeCurrentMusic} musicAlbum={playList[trackIndex]} reference={audioRef } onEnded={nextTrack}/>
   </>
