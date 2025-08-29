@@ -8,10 +8,10 @@ function ControlsBar ({togglePlay, isPlaying, nextMusic, backMusic, timeCurrentM
     return(
         <div className="container-Barra">
             <div className="container-botoes">
-                <button className="container-botoes-skip" onClick={backMusic}> <i className="bi bi-skip-start-fill"></i></button>
-                <button className="container-botoes-pause" onClick={togglePlay}> <i className={`bi bi-${ isPlaying ? "pause" : "play-fill"
-            }`}></i> </button>
-                <button className="container-botoes-skip" onClick={nextMusic}><i className="bi bi-skip-end-fill"></i></button>
+                <button onClick={backMusic}> <i className="bi bi-skip-start-fill container-botoes-skip"></i></button>
+                <button onClick={togglePlay}> <i className={ `bi bi-${ isPlaying ? "pause" : "play-fill"
+            }`} style={{fontSize: "45px"}}></i> </button>
+                <button onClick={nextMusic}><i className="bi bi-skip-end-fill  container-botoes-skip"></i></button>
             </div>
             <div>
                 <p className="container-barra-time">{formatTime(timeCurrentMusic)} / {formatTime(timeTotalMusic)}</p>

@@ -22,8 +22,15 @@ body {
 .container-botoes {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 24px;
+  gap: 22px;
+}
+
+.container-botoes-skip {
+  font-size: 20px;
+}
+
+.container-botoes-pause {
+  font-size: 30px;
 }
 
 .container-botoes button {
@@ -154,7 +161,7 @@ body {
 }
 
 .container-barra-time {
-  margin-left: 5px;
+  margin-left: 15px;
   color: #858585;
   font-size: 12px;
 }
